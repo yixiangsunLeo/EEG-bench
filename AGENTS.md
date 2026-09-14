@@ -104,6 +104,7 @@ status: "active"
 
 ## 8. 交接信息
 
-- 前身项目备份：`/share/home/yuan/SYX_backup_2026-09-13.tar.gz`（sha256 见同名 `.sha256`），GitHub `stevencummings341-prog/EEG`（main，已同步）。可复用的旧代码路径见 `docs/LEGACY.md`。
+- 本仓库远端：GitHub `yixiangsunLeo/EEG-bench`（`origin`，SSH 别名 `github.com-yixiangsunLeo` → 密钥 `~/.ssh/id_ed25519_stevencummings`，账号已由 stevencummings341-prog 改名为 yixiangsunLeo）。`git clone --recurse-submodules`。
+- 前身项目备份：`/share/home/yuan/SYX_backup_2026-09-13.tar.gz`（sha256 见同名 `.sha256`），GitHub 旧仓库 `EEG`（同一账号，main 已同步）。可复用的旧代码路径见 `docs/LEGACY.md`。
 - 两个自有数据集的 processed npz 仍在外部盘（`/share/workspace2/moto_imagination/{WBCIC_SHU,SHU}/processed/`），未受清理影响；见 `docs/DATASETS.md`。
 - 集群：Slurm，GPU 分区 gpu2node / gpu3node，conda 环境 `mi_torch_cu118`（共享，勿改）；FM 各自依赖冲突时另建环境，记录在 `environment.yml` 注释与 `docs/DECISIONS.md`。
