@@ -1,0 +1,224 @@
+# Model roster: the 20 entries of EEG-FM-Compass Table 2 (arXiv:2601.17883v3).
+# Sources: family/params/rank = Table 52; pretraining objective = Table 53; input_spec = Table 4.
+# `official_repo` / `submodule` filled 2026-09-14 from the benchmark README (pinned commits: third_party/README.md);
+# `weights` entries live in weights/MANIFEST.yaml. Per-model runnable config lives in configs/models/<key>.yaml once integrated.
+#
+# input_spec keys: sfreq (Hz), band (Hz, [lo, hi] or null), notch (Hz or null),
+#   norm (zscore | minmax_pm1 | p95 | none), channels (native | <n> | learnable | per_channel | coord),
+#   window_s / stride_s (patching), ea (Euclidean Alignment, bool).
+
+specialists:
+  - key: traditional_ml
+    display: "Traditional ML"
+    family: classical
+    params: null
+    paper_rank: 11
+    per_paradigm: {motor_imagery: "CSP+LDA", p300: "xDAWN+LDA"}
+    input_spec: {channels: native}
+    official_repo: null
+  - key: eegnet
+    display: "EEGNet"
+    family: cnn
+    params: "2K"
+    paper_rank: 2
+    input_spec: {channels: native}
+    official_repo: https://github.com/vlawhern/arl-eegmodels
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/eegnet_arl
+  - key: shallowconv
+    display: "ShallowConvNet"
+    family: cnn
+    params: "36K"
+    paper_rank: 4
+    input_spec: {channels: native}
+    official_repo: https://github.com/braindecode/braindecode
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/braindecode
+  - key: lmda
+    display: "LMDA-Net"
+    family: cnn
+    params: "3K"
+    paper_rank: 6
+    input_spec: {channels: native}
+    official_repo: https://github.com/MiaoZhengQing/LMDA-Code
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/lmda
+  - key: tsception
+    display: "TSception"
+    family: cnn
+    params: "9K"
+    paper_rank: 8
+    input_spec: {channels: native}
+    official_repo: https://github.com/yi-ding-cs/TSception
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/tsception
+  - key: cnn_t
+    display: "CNN-Transformer"
+    family: cnn_transformer
+    params: "2.8M"
+    paper_rank: 14
+    input_spec: {channels: native}
+    official_repo: null   # benchmark-only implementation (no upstream repo listed)
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+  - key: deformer
+    display: "EEG-Deformer"
+    family: cnn_transformer
+    params: "0.8M"
+    paper_rank: 5
+    input_spec: {channels: native}
+    official_repo: https://github.com/yi-ding-cs/EEG-Deformer
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/eeg_deformer
+  - key: conformer
+    display: "EEG Conformer"
+    family: cnn_transformer
+    params: "0.16M"
+    paper_rank: 3
+    input_spec: {channels: native}
+    official_repo: https://github.com/eeyhsong/EEG-Conformer
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/eeg_conformer
+
+foundation_models:
+  - key: bendr
+    display: "BENDR"
+    pretraining_objective: embedded_tokens
+    params: "4.0M"
+    paper_rank: 12
+    input_spec: {sfreq: 256, band: [null, 120], notch: null, norm: minmax_pm1, channels: 19, window_s: 0.375, stride_s: 0.375, ea: false}
+    pretraining_corpus: [TUEG]
+    official_repo: https://github.com/SPOClab-ca/BENDR
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/bendr
+    weights: null
+  - key: biot_6d
+    display: "BIOT-6D"
+    pretraining_objective: embedded_tokens
+    params: "3.2M"
+    paper_rank: 13
+    input_spec: {sfreq: 200, band: null, notch: null, norm: p95, channels: per_channel, window_s: 1.0, stride_s: 0.5, ea: false}
+    pretraining_corpus: [CHB-MIT, IIIC, TUAB, TUEV, SHHS, PREST]
+    variants: [biot_1d, biot_2d]
+    official_repo: https://github.com/ycq091044/BIOT
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/biot
+    weights: null
+  - key: labram
+    display: "LaBraM"
+    pretraining_objective: codebook_index
+    params: "5.8M"
+    paper_rank: 9
+    input_spec: {sfreq: 200, band: [0.1, 75], notch: 50, norm: minmax_pm1, channels: learnable, window_s: 1.0, stride_s: 1.0, ea: false}
+    official_repo: https://github.com/935963004/LaBraM
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/labram
+    weights: null
+  - key: neuro_gpt
+    display: "Neuro-GPT"
+    pretraining_objective: embedded_tokens
+    params: "0.16M"
+    paper_rank: 7
+    input_spec: {sfreq: 250, band: [0.5, 100], notch: 60, norm: zscore, channels: 22, window_s: 2.0, stride_s: 1.8, ea: false}
+    pretraining_corpus: [TUH]
+    official_repo: https://github.com/wenhui0206/NeuroGPT
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/neurogpt
+    weights: null
+  - key: eegpt
+    display: "EEGPT"
+    pretraining_objective: raw_signals
+    params: "25M"
+    paper_rank: 15
+    input_spec: {sfreq: 256, band: "task-dependent (<=38 / <=30 / <=120 Hz)", notch: null, norm: "ea_car_zscore", channels: learnable, window_s: 0.25, stride_s: 0.25, ea: true}
+    official_repo: https://github.com/BINE022/EEGPT
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/eegpt
+    weights: null
+  - key: cbramod
+    display: "CBraMod"
+    pretraining_objective: raw_signals
+    params: "4.0M"
+    paper_rank: 1
+    input_spec: {sfreq: 200, band: [0.3, 75], notch: 60, norm: minmax_pm1, channels: 19, window_s: 1.0, stride_s: 1.0, ea: false}
+    pretraining_corpus: [TUEG]
+    official_repo: https://github.com/wjq-learning/CBraMod
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/cbramod
+    weights: null
+  - key: tfm
+    display: "TFM (TFM-Tokenizer)"
+    pretraining_objective: codebook_index
+    params: "1.9M"
+    paper_rank: 20
+    input_spec: {sfreq: 200, band: [0.1, 75], notch: 50, norm: none, channels: per_channel, window_s: 1.0, stride_s: 0.5, ea: false}
+    pretraining_corpus: [TUH, CHB-MIT]
+    official_repo: https://github.com/Jathurshan0330/TFM-Tokenizer
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/tfm_tokenizer
+    weights: null
+  - key: brainomni_tiny
+    display: "BrainOmni-Tiny"
+    pretraining_objective: codebook_index
+    params: "8.4M"
+    paper_rank: 16
+    input_spec: {sfreq: 256, band: [0.1, 96], notch: [50, 60], norm: zscore, channels: coord, window_s: 2.0, stride_s: 1.0, ea: false}
+    limitations: ["no bipolar montage support"]
+    official_repo: https://github.com/OpenTSLab/BrainOmni
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/brainomni
+    weights: null
+  - key: brainomni_base
+    display: "BrainOmni-Base"
+    pretraining_objective: codebook_index
+    params: "33M"
+    paper_rank: 17
+    input_spec: {sfreq: 256, band: [0.1, 96], notch: [50, 60], norm: zscore, channels: coord, window_s: 2.0, stride_s: 1.0, ea: false}
+    limitations: ["no bipolar montage support"]
+    official_repo: https://github.com/OpenTSLab/BrainOmni
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/brainomni
+    weights: null
+  - key: eegmamba
+    display: "EEGMamba"
+    pretraining_objective: raw_signals
+    params: "3.3M"
+    paper_rank: 10
+    input_spec: {sfreq: 200, band: [0.3, 75], notch: [50, 60], norm: minmax_pm1, channels: native, window_s: 1.0, stride_s: 1.0, ea: false}
+    env_risk: "mamba-ssm / causal-conv1d CUDA build"
+    official_repo: https://github.com/wjq-learning/EEGMamba
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/eegmamba
+    weights: null
+  - key: singlem
+    display: "SingLEM"
+    pretraining_objective: raw_plus_frequency
+    params: "3.3M"
+    paper_rank: 19
+    input_spec: {sfreq: 128, band: [0.5, 50], notch: 50, norm: minmax_pm1_open, channels: per_channel, window_s: 1.0, stride_s: 0.75, ea: false}
+    official_repo: https://github.com/ttlabtuat/SingLEM
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/singlem
+    weights: null
+  - key: luna_base
+    display: "LUNA-Base"
+    pretraining_objective: embedded_tokens
+    params: "7.0M"
+    paper_rank: 18
+    input_spec: {sfreq: 256, band: [0.1, 75], notch: [50, 60], norm: zscore, channels: coord, patch_len: 40, ea: false}
+    pretraining_corpus: [TUEG]
+    official_repo: https://github.com/pulp-bio/BioFoundation
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    submodule: third_party/biofoundation_luna
+    weights: null
+
+optional:
+  - key: mirepnet
+    display: "MIRepNet (MI-specific FM)"
+    pretraining_objective: null
+    params: null
+    paper_rank: null                     # supplementary only; best on MI per paper §4.4
+    input_spec: {sfreq: 250, band: [8, 32], notch: null, norm: "zero_mean_ea", channels: 45, ea: true}
+    status: "inclusion undecided"
+    official_repo: https://github.com/staraink/MIRepNet
+    benchmark_impl: third_party/eeg_fm_benchmark   # vendored implementation used for numbers
+    weights: null

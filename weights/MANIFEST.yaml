@@ -1,0 +1,208 @@
+# Pretrained weights manifest — generated/updated by scripts/download_weights.py.
+# Paths are relative to weights/ and mirror the benchmark's models/pretrained_models/ layout.
+# `eegbench doctor` re-hashes every file. Never edit sha256 by hand.
+
+bendr:
+  license: see upstream repo (SPOClab-ca/BENDR)
+  source_commit: ac918abaec111d15fcaa2a8fcd2bd3d8b0d81a10
+  artifacts:
+  - file: encoder.pt
+    url: https://github.com/SPOClab-ca/BENDR/releases/download/v0.1-alpha/encoder.pt
+    sha256: 32c913b1778d8bdf7f08bbe8ef5e6bef2954087b482851816deefc4d0fcf84cb
+    size_bytes: 15893001
+    optional: false
+    downloaded: '2026-09-14'
+  - file: contextualizer.pt
+    url: https://github.com/SPOClab-ca/BENDR/releases/download/v0.1-alpha/contextualizer.pt
+    sha256: b8ee0c8c8403809d65114ae88485cdf841dd1860a88ebebb4cdee2bf26f91526
+    size_bytes: 612693181
+    optional: true
+    downloaded: '2026-09-14'
+  status: complete
+biot_6d:
+  license: see upstream repo (ycq091044/BIOT)
+  source_commit: d138e32634e52ae9fa6ec98ac9c4087b14ca869a
+  artifacts:
+  - file: EEG-six-datasets-18-channels.ckpt
+    url: local:third_party/biot/pretrained-models/EEG-six-datasets-18-channels.ckpt
+    sha256: 78ff15a1782f194286a97b1abe68b2bf100a39803325e2917337d0a77a228542
+    size_bytes: 13794371
+    optional: false
+    downloaded: '2026-09-14'
+  - file: EEG-PREST-16-channels.ckpt
+    url: local:third_party/biot/pretrained-models/EEG-PREST-16-channels.ckpt
+    sha256: 40f55f5d23e83796495616c8145c8336fcff2b901c42e8ba5115223081c2ad70
+    size_bytes: 13791969
+    optional: true
+    downloaded: '2026-09-14'
+  - file: EEG-SHHS+PREST-18-channels.ckpt
+    url: local:third_party/biot/pretrained-models/EEG-SHHS+PREST-18-channels.ckpt
+    sha256: 391b53f77d5060e43746f3ffd5aae8107785f4fd122bf2f87221a1b5b2854a84
+    size_bytes: 13794194
+    optional: true
+    downloaded: '2026-09-14'
+  status: complete
+labram:
+  license: see upstream repo (935963004/LaBraM)
+  source_commit: c431221e6cfd23dbfa9950e0180682fb322b0548
+  artifacts:
+  - file: labram-base.pth
+    url: local:third_party/labram/checkpoints/labram-base.pth
+    sha256: 7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c
+    size_bytes: 96612769
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+neuro_gpt:
+  license: see HF model card wenhuic/Neuro-GPT
+  source_commit: 230571d45ca4369b82f33ab42fc00863c2f95598
+  artifacts:
+  - file: neurogpt.bin
+    url: https://hf-mirror.com/wenhuic/Neuro-GPT/resolve/main/pretrained_model/pytorch_model.bin
+    sha256: 2ea7d931a812baf107cdfb41bf0f7b5568043ae2758e30b4b1b0e9fae3ff3f1a
+    size_bytes: 318189905
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+eegpt:
+  license: see upstream repo (BINE022/EEGPT)
+  source_commit: a0e0a8fad729e2ecf4eedb3a81548a6e6d48a705
+  artifacts:
+  - file: eegpt_large_official.safetensors
+    url: https://hf-mirror.com/eeg-telecom-paris/eegpt-large-official/resolve/main/weights.safetensors
+    sha256: c45c31cb42f68f8b9c630a7739a8084ae5dd6a6608a0d732a5165f180c755a96
+    size_bytes: 407524160
+    optional: false
+    downloaded: '2026-09-14'
+  - file: eegpt_large_official.model_cfg.yaml
+    url: https://hf-mirror.com/eeg-telecom-paris/eegpt-large-official/resolve/main/model_cfg.yaml
+    sha256: 0ad06a0dc0396041fc429064c9b1aedbe20215b56f087b809385e116c76c7c5e
+    size_bytes: 525
+    optional: false
+    downloaded: '2026-09-14'
+  - file: eegpt.ckpt
+    url: derived:scripts/convert_eegpt_safetensors.py
+    sha256: f406ec002fd56f618f323c170b9c9e68997ea3299b33575611cb3e26fb1be273
+    size_bytes: 407582271
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+cbramod:
+  license: see HF model card weighting666/CBraMod
+  source_commit: b9e961003214326972c567eff390e75b0287e32a
+  artifacts:
+  - file: CBraMod.pth
+    url: https://hf-mirror.com/weighting666/CBraMod/resolve/main/pretrained_weights.pth
+    sha256: 0792cb808c14e6b7a2bb2ce1dff379bc47bc54c49a779825bdfeb33bf8157178
+    size_bytes: 19775842
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+tfm:
+  license: see upstream repo (Jathurshan0330/TFM-Tokenizer)
+  source_commit: 2d6da482b16dabbb2ebec808fa9f505fc6f367c4
+  artifacts:
+  - file: tfm_tokenizer_last.pth
+    url: local:third_party/tfm_tokenizer/pretrained_weigths/multiple_dataset_settings/Pretrained_tfm_tokenizer_2x2x8/tfm_tokenizer_last.pth
+    sha256: f7929eed0f8275d08a7e18743fdd188c7ba5b4722151333b4d386ca05b84d6d9
+    size_bytes: 6881039
+    optional: false
+    downloaded: '2026-09-14'
+  - file: tfm_encoder_mtp_last.pth
+    url: local:third_party/tfm_tokenizer/pretrained_weigths/multiple_dataset_settings/MTP_Pretrained_tfm_encoder_64x4/tfm_encoder_mtp_last.pth
+    sha256: 738d56a2021dd363c9d21c4804c441b486b28e33f73883dcf49623f9db8ad973
+    size_bytes: 5308635
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+brainomni_tiny:
+  license: see HF model card OpenTSLab/BrainOmni
+  source_commit: 340d6b5aba886af76b217272cdb3251651e9bf16
+  artifacts:
+  - file: BrainOmni/tiny/BrainOmni.pt
+    url: https://hf-mirror.com/OpenTSLab/BrainOmni/resolve/main/tiny/BrainOmni.pt
+    sha256: 62c67ba6a84ea0625e67a3b5e7463fe3930bfee88a612a225e9062a052542ffc
+    size_bytes: 48816662
+    optional: false
+    downloaded: '2026-09-14'
+  - file: BrainOmni/tiny/model_cfg.json
+    url: https://hf-mirror.com/OpenTSLab/BrainOmni/resolve/main/tiny/model_cfg.json
+    sha256: 4b994b38f1a8dccc8136f2b837a8ad2d3ebb028a1af0c527f9e0902a1a5c252e
+    size_bytes: 530
+    optional: false
+    downloaded: '2026-09-14'
+  - file: BrainOmni/braintokenizer/BrainTokenizer.pt
+    url: https://hf-mirror.com/OpenTSLab/BrainOmni/resolve/main/braintokenizer/BrainTokenizer.pt
+    sha256: d41c44c14c3f3b11fd0fb660752e356dff4cb4bc5f32a05f470f503ffddc7b1a
+    size_bytes: 24425508
+    optional: false
+    downloaded: '2026-09-14'
+  - file: BrainOmni/braintokenizer/model_cfg.json
+    url: https://hf-mirror.com/OpenTSLab/BrainOmni/resolve/main/braintokenizer/model_cfg.json
+    sha256: 67d99edcfdc54285bed7f37757b6fc9732199c56ac48f86027af1c8a22e95183
+    size_bytes: 370
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+brainomni_base:
+  license: see HF model card OpenTSLab/BrainOmni
+  source_commit: 340d6b5aba886af76b217272cdb3251651e9bf16
+  artifacts:
+  - file: BrainOmni/base/BrainOmni.pt
+    url: https://hf-mirror.com/OpenTSLab/BrainOmni/resolve/main/base/BrainOmni.pt
+    sha256: 435db24e57a55df05aa7e16355def7b7ecbedb22aa1ec16063e7d14efd2386d0
+    size_bytes: 146687894
+    optional: false
+    downloaded: '2026-09-14'
+  - file: BrainOmni/base/model_cfg.json
+    url: https://hf-mirror.com/OpenTSLab/BrainOmni/resolve/main/base/model_cfg.json
+    sha256: 492e2229b1fb87d49330b23f482a1641ec7cdc0b41d38f76384f18fdef3696d5
+    size_bytes: 531
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+eegmamba:
+  license: see HF model card weighting666/EEGMamba
+  source_commit: dbc83fa072744201e8897aeb9f65007b952ad323
+  artifacts:
+  - file: EEGMamba.pth
+    url: https://hf-mirror.com/weighting666/EEGMamba/resolve/main/pretrained_EEGMamba.pth
+    sha256: b452bb29ecf1d6131ba82a50c6e13823ec1d660d9009d013e691d19b2916f4fe
+    size_bytes: 13313895
+    optional: false
+    downloaded: '2026-09-14'
+  status: complete
+singlem:
+  license: see upstream repo (ttlabtuat/SingLEM)
+  source_commit: 6db5b5af95f12b6180ffa762723a71ef06c92a4b
+  artifacts:
+  - file: singlem_pretrained.pt
+    url: git:third_party/singlem@05abe21:weights/singlem_pretrained.pt
+    sha256: 0e492189ea1a0c26445d89b5de732f0a73ed3d1e95675841adf830bbaec271c3
+    size_bytes: 13177518
+    optional: false
+    downloaded: '2026-09-14'
+  - file: singlem_downstream_excluded_rev2026-07-31.pt
+    url: git:third_party/singlem@6db5b5a:SingLEM/checkpoints/singlem_downstream_excluded.pt
+    sha256: cb4c1b4f4a6fae99a984b883177e09b8c2fe44ed0d4c9a0ded3928dc425584bb
+    size_bytes: 13162319
+    optional: true
+    downloaded: '2026-09-14'
+  status: complete
+luna_base:
+  license: CC BY-ND 4.0 (PulpBio HF model cards)
+  source_commit: f7e94379255c425819c9138ceca60c26bc13b88e
+  artifacts:
+  - file: LUNA_base.safetensors
+    url: https://hf-mirror.com/PulpBio/LUNA/resolve/main/LUNA_base.safetensors
+    sha256: 482839ad9152b6948ff166d2a1638637c54b4d91f1cefadbce6312831ba9b11d
+    size_bytes: 26712092
+    optional: false
+    downloaded: '2026-09-14'
+  - file: LUNA_config.json
+    url: https://hf-mirror.com/PulpBio/LUNA/resolve/main/config.json
+    sha256: e078b9f87f56582aee0cb52e580e661af214ebcc543f8b4c3c003106c2f6d96a
+    size_bytes: 55
+    optional: true
+    downloaded: '2026-09-14'
+  status: complete

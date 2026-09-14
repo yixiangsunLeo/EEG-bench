@@ -1,0 +1,54 @@
+[submodule "third_party/eeg_fm_benchmark"]
+	path = third_party/eeg_fm_benchmark
+	url = https://github.com/Dingkun0817/EEG-FM-Benchmark.git
+[submodule "third_party/eegnet_arl"]
+	path = third_party/eegnet_arl
+	url = https://github.com/vlawhern/arl-eegmodels
+[submodule "third_party/braindecode"]
+	path = third_party/braindecode
+	url = https://github.com/braindecode/braindecode
+[submodule "third_party/eeg_deformer"]
+	path = third_party/eeg_deformer
+	url = https://github.com/yi-ding-cs/EEG-Deformer
+[submodule "third_party/eeg_conformer"]
+	path = third_party/eeg_conformer
+	url = https://github.com/eeyhsong/EEG-Conformer
+[submodule "third_party/lmda"]
+	path = third_party/lmda
+	url = https://github.com/MiaoZhengQing/LMDA-Code
+[submodule "third_party/tsception"]
+	path = third_party/tsception
+	url = https://github.com/yi-ding-cs/TSception
+[submodule "third_party/labram"]
+	path = third_party/labram
+	url = https://github.com/935963004/LaBraM
+[submodule "third_party/bendr"]
+	path = third_party/bendr
+	url = https://github.com/SPOClab-ca/BENDR
+[submodule "third_party/neurogpt"]
+	path = third_party/neurogpt
+	url = https://github.com/wenhui0206/NeuroGPT
+[submodule "third_party/brainomni"]
+	path = third_party/brainomni
+	url = https://github.com/OpenTSLab/BrainOmni
+[submodule "third_party/biofoundation_luna"]
+	path = third_party/biofoundation_luna
+	url = https://github.com/pulp-bio/BioFoundation
+[submodule "third_party/eegmamba"]
+	path = third_party/eegmamba
+	url = https://github.com/wjq-learning/EEGMamba
+[submodule "third_party/singlem"]
+	path = third_party/singlem
+	url = https://github.com/ttlabtuat/SingLEM
+[submodule "third_party/tfm_tokenizer"]
+	path = third_party/tfm_tokenizer
+	url = https://github.com/Jathurshan0330/TFM-Tokenizer
+[submodule "third_party/cbramod"]
+	path = third_party/cbramod
+	url = https://github.com/wjq-learning/CBraMod
+[submodule "third_party/eegpt"]
+	path = third_party/eegpt
+	url = https://github.com/BINE022/EEGPT
+[submodule "third_party/biot"]
+	path = third_party/biot
+	url = https://github.com/ycq091044/BIOT

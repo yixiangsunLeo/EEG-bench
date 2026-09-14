@@ -1,0 +1,33 @@
+# Dataset card. Facts: EEG-FM-Compass Table 14 / A3. Verify against MOABB after download.
+key: bnci2014001
+display_name: "BNCI2014001 (BCI Competition IV 2a)"
+paradigm: motor_imagery
+source:
+  provider: moabb
+  moabb_class: BNCI2014_001
+n_subjects: 9
+sessions: ["0train", "1test"]          # MOABB naming; verify
+n_channels: 22
+montage: monopolar
+channel_names: null                    # filled by `prepare` from MOABB raw.info
+sfreq_native: 250
+trial_length_s: 4.0
+n_trials_total: 2592
+classes: [left_hand, right_hand, feet, tongue]
+label_space: mi4
+class_balance: balanced
+paper:
+  in_table2: true
+  loso_finetune_sessions: 1            # paper: single session per subject for fine-tuning
+  fewshot_ratio: "30% of one session"
+  pretraining_leakage: []              # no FM in Table 2 marked ‡ on this dataset
+canonical_version: null                # set when prepare() has run
+# Official recipe (third_party/eeg_fm_benchmark/datasets/BNCI2014001/Preprocess_Dataset.py @680b12b)
+benchmark_preprocess:
+  moabb_paradigm: "MotorImagery(fmin=0.1, fmax=75)"
+  session_kept: "0train"               # the single session used for both LOSO fine-tuning and evaluation
+  crop_samples: 1000                    # data[:, :, :1000] -> 4 s @ 250 Hz
+  label_map: {left_hand: 0, right_hand: 1, feet: 2, tongue: 3}
+  channel_names: [Fz, FC3, FC1, FCZ, FC2, FC4, C5, C3, C1, CZ, C2, C4, C6, CP3, CP1, CPZ, CP2, CP4, P1, PZ, P2, POZ]
+  official_hparams_json: null           # benchmark ships config/ JSONs only for BNCI2014004 and BNCI2015001
+notes: "6 runs x 48 trials per session."

@@ -1,0 +1,35 @@
+# Dataset card (in-house). Facts verified in the predecessor project (see docs/LEGACY.md).
+key: wbcic_shu
+display_name: "WBCIC-SHU 2025 (Yang et al., Sci Data 12:488)"
+paradigm: motor_imagery
+source:
+  provider: local
+  bids_root_key: wbcic_shu.bids_root                    # configs/paths.local.yaml
+  processed_manifest_key: wbcic_shu.processed_2c_manifest
+  moabb_class: null                                     # possibly `Yang2025` in MOABB — verify (PLAN Q1)
+cohorts:
+  2c:
+    subjects: "1-51"                    # 51 subjects; Figshare's "52" is wrong
+    classes: [left_hand, right_hand]
+    label_space: mi_lr
+    processed_shape: "[trials, 58, 1000]"
+    sessions_ok: 148                    # of 153; 5 failed sessions in processed manifest
+  3c:
+    subjects: "52-62"                   # 11 subjects; disjoint from 2C cohort (not a subset)
+    classes: [left_hand, right_hand, feet]
+    label_space: mi_lrf
+    n_trials_total: 9899
+    processed: null                     # must be regenerated (old script in LEGACY.md, ~7 min)
+n_sessions_per_subject: 3
+n_channels: 58                          # processed derivative; raw is 59 ch @ 1000 Hz
+montage: monopolar
+channel_names: null                     # take from dataset documentation during prepare
+sfreq_native: 250                       # processed derivative (1000 samples / 4 s)
+trial_length_s: 4.0
+class_balance: balanced                 # 2C cohort perfectly balanced
+paper:
+  in_table2: false
+  loso_finetune_sessions: null          # PLAN Q2
+  pretraining_leakage: null             # re-check against each FM's pre-training corpus
+canonical_version: null
+notes: "Which cohort (2C / 3C / both) is PLAN Q1. External processed npz untouched by the 2026-09-13 cleanup."

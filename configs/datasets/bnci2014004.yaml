@@ -1,0 +1,33 @@
+# Dataset card. Facts: EEG-FM-Compass Table 14 / A3. Verify against MOABB after download.
+key: bnci2014004
+display_name: "BNCI2014004 (BCI Competition IV 2b)"
+paradigm: motor_imagery
+source:
+  provider: moabb
+  moabb_class: BNCI2014_004
+n_subjects: 9
+sessions: ["0", "1", "2", "3", "4"]    # 5 sessions: 2 screening (no feedback) + 3 feedback; verify MOABB names
+n_channels: 3
+montage: bipolar                       # C3, Cz, C4 bipolar derivations
+channel_names: null
+sfreq_native: 250
+trial_length_s: 4.5
+n_trials_total: 1400
+classes: [left_hand, right_hand]
+label_space: mi_lr
+class_balance: balanced                # 120 trials per class per subject
+paper:
+  in_table2: true
+  loso_finetune_sessions: 1
+  fewshot_ratio: "30% of one session"
+  pretraining_leakage: []
+canonical_version: null
+# Official recipe (third_party/eeg_fm_benchmark/datasets/BNCI2014004/Preprocess_Dataset.py @680b12b)
+benchmark_preprocess:
+  moabb_paradigm: "MotorImagery(fmin=0, fmax=120)"
+  session_kept: "3test"                # NOTE: the 4th session (feedback), not the first
+  crop_samples: null                    # full MOABB epoch (4.5 s @ 250 Hz = 1125 samples)
+  label_map: {left_hand: 0, right_hand: 1}
+  channel_names: [C3, CZ, C4]
+  official_hparams_json: "third_party/eeg_fm_benchmark/config/BNCI2014004.json"
+notes: "Only 3 bipolar channels: FM channel-vocabulary mapping is the main integration risk."

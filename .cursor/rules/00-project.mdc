@@ -1,0 +1,17 @@
+---
+description: eeg-fm-bench project identity and where the rules live
+alwaysApply: true
+---
+
+# Project
+
+`eeg-fm-bench` benchmarks EEG foundation models and specialist models under the EEG-FM-Compass
+(arXiv:2601.17883v3) LOSO protocol on 7 datasets (5 BNCI MI/P300 sets + WBCIC-SHU + SHU 2022), then
+runs cross-dataset generalization experiments.
+
+Before any work read `AGENTS.md` (rules), then the top entry of `progress.md` (current state) and
+`docs/PLAN.md` (open decisions). Do not write history or numbers into `AGENTS.md`; append to
+`progress.md` and record decisions in `docs/DECISIONS.md`.
+
+Single human entry point: `python -m eegbench.cli <subcommand>`. Code lives only in `src/eegbench/`;
+runnable configuration only in `configs/`.

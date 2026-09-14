@@ -1,0 +1,28 @@
+# Dataset card (in-house). Facts verified in the predecessor project (see docs/LEGACY.md).
+key: shu2022
+display_name: "SHU 2022 (Ma et al., Sci Data 2022)"
+paradigm: motor_imagery
+source:
+  provider: local
+  raw_root_key: shu2022.raw_root                        # configs/paths.local.yaml
+  processed_manifest_key: shu2022.processed_manifest    # per-session npz, labels already {0,1}
+  moabb_class: null                                     # check MOABB
+n_subjects: 25
+n_sessions_per_subject: 5
+n_channels: 32
+montage: monopolar
+channel_names: null                     # take from dataset documentation during prepare
+sfreq_native: 250
+trial_length_s: 4.0
+n_trials_total: 11988                   # approx: 125 sessions x 90-100 trials; take exact from manifest
+classes: [left_hand, right_hand]
+label_space: mi_lr
+class_balance: approximately_balanced   # not guaranteed 50/50 per session
+dataset_filtering: "authors' per-session .mat already bandpass/notch filtered and epoched to 4 s"
+chance_band: [0.514, 0.537]             # cross-subject decoding is near chance in the predecessor project
+paper:
+  in_table2: false
+  loso_finetune_sessions: null          # PLAN Q2
+  pretraining_leakage: null
+canonical_version: null
+notes: "All 125 sessions ok in the external processed manifest."

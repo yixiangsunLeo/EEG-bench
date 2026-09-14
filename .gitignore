@@ -1,0 +1,62 @@
+# ===== machine-local configuration =====
+configs/paths.local.yaml
+configs/**/*.local.yaml
+
+# ===== data, weights, run artifacts (never in git) =====
+/data/*
+/weights/*
+/outputs/*
+/checkpoints/*
+/logs/*
+!/data/.gitkeep
+!/data/README.md
+!/weights/.gitkeep
+!/weights/README.md
+!/weights/MANIFEST.yaml
+!/outputs/.gitkeep
+!/checkpoints/.gitkeep
+!/logs/.gitkeep
+
+# ===== large binaries anywhere =====
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.h5
+*.hdf5
+*.mat
+*.edf
+*.bdf
+*.gdf
+*.fif
+*.zip
+*.tar
+*.tar.gz
+*.7z
+docs/papers/*.pdf
+
+# ===== python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ===== environments / editors / OS =====
+.env
+.venv/
+venv/
+.idea/
+.DS_Store
+*.swp
+
+# ===== slurm noise =====
+*.out
+*.err
+slurm-*.out

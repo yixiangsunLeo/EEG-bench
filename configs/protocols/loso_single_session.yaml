@@ -1,0 +1,22 @@
+# Protocol skeleton: EEG-FM-Compass LOSO for MI/P300 datasets (paper §3.2).
+# STATUS: draft — fields marked TBD are PLAN.md §5 decisions. Do not run until DECISIONS.md records them.
+key: loso_single_session
+description: >
+  Leave-one-subject-out. For each held-out test subject, fine-tune on the remaining subjects using a
+  single session per training subject; evaluate on all sessions of the test subject.
+split_unit: subject
+test: one_subject
+train:
+  sessions_per_subject: 1
+  session_selector: TBD          # e.g. "first" | explicit per-dataset map (PLAN Q2)
+val:
+  source: train_subjects         # never carve validation from trials of test subjects
+  n_subjects: TBD                # e.g. 1 or ceil(10%)
+  use_for: [monitoring, best_val_metrics]   # NOT for the paper-style final-epoch main table
+seeds: [0, 1, 2]                 # training seeds; LOSO folds are deterministic
+report:
+  primary: final_epoch           # paper convention; best_val recorded as secondary (DECISIONS D-006)
+  metrics: [bca, acc, kappa, macro_f1, auc]
+leakage_assertions:
+  - "test_subjects ∩ (train_subjects ∪ val_subjects) == ∅"
+  - "no trial-level splitting"

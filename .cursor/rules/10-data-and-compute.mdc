@@ -1,0 +1,16 @@
+---
+description: Data boundaries, third-party code, weights and cluster rules
+alwaysApply: true
+---
+
+# Data, third-party code, compute
+
+- External raw data is read-only. Paths come only from `configs/paths.local.yaml` (gitignored);
+  never hard-code absolute paths in Python or YAML.
+- Training code reads only the canonical layer under `data/canonical/<dataset>/v<k>/`; raw -> canonical
+  conversion is an explicit, versioned CLI step.
+- `third_party/` holds official model repositories as pinned git submodules. Never edit upstream files;
+  put changes in `third_party/patches/` or in our adapters under `src/eegbench/models/`.
+- Pretrained weights live in `weights/` with `MANIFEST.yaml` (url, sha256, license); verify sha256 after download.
+- Heavy jobs go through Slurm; GPU jobs must fail fast if CUDA is unavailable; smoke-test before full runs;
+  never run training on the login node. Never overwrite a completed run — use a new `run_id`.

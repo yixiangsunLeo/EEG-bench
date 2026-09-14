@@ -1,0 +1,28 @@
+# Machine-local paths. Copy to configs/paths.local.yaml (gitignored) and fill in.
+# Load order: paths.local.yaml > this file. Python code must never hard-code absolute paths.
+
+# Where raw / MOABB downloads live (read-only for training code).
+raw_root: "/CHANGE/ME/eeg_raw"            # MOABB will download BNCI datasets under here (MNE_DATA)
+
+# External processed sources for the two in-house datasets (read-only).
+wbcic_shu:
+  bids_root: "/CHANGE/ME/WBCIC_SHU"                                  # BIDS tree (sourcedata/, derivatives/)
+  processed_2c_manifest: "/CHANGE/ME/WBCIC_SHU/processed/eog_ecg_clean/processed_manifest.csv"
+shu2022:
+  raw_root: "/CHANGE/ME/SHU"
+  processed_manifest: "/CHANGE/ME/SHU/processed/npz_clean/processed_manifest.csv"
+
+# Canonical data written by `eegbench prepare` (may be a symlink target on a large disk).
+canonical_root: "data/canonical"            # relative = project root
+
+# Pretrained weights (see weights/MANIFEST.yaml).
+weights_root: "weights"
+
+# Run artifacts.
+outputs_root: "outputs"
+checkpoints_root: "checkpoints"
+logs_root: "logs"
+
+# Optional network overrides (leave unset on machines with direct access).
+# hf_endpoint: "https://hf-mirror.com"                     # Hugging Face mirror
+# bnci_url: "https://lampz.tugraz.at/~bci/database/"       # MOABB BNCI host override (scripts/download_bnci.py)

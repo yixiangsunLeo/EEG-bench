@@ -1,0 +1,35 @@
+# Dataset card. Facts: EEG-FM-Compass Table 14 / A3. Verify against MOABB after download.
+key: bnci2014009
+display_name: "BNCI2014009 (P300 speller, healthy)"
+paradigm: p300
+source:
+  provider: moabb
+  moabb_class: BNCI2014_009
+n_subjects: 10
+sessions: null                         # paper: 4 sessions x 3 runs; MOABB exposes 3 sessions — verify
+n_channels: 16
+montage: monopolar
+channel_names: [Fz, FCz, Cz, CPz, Pz, Oz, F3, F4, C3, C4, CP3, CP4, P3, P4, PO7, PO8]
+sfreq_native: 256
+trial_length_s: 0.8
+paper_input_length_s: 1.0              # paper prepends 0.2 s to satisfy FM minimum input length
+n_trials_total: 5760
+classes: [non_target, target]
+label_space: p300
+class_balance: imbalanced              # ~1:5 target:non-target -> BCA and AUC both required
+dataset_filtering: "0.1-20 Hz bandpass (applied by dataset authors)"
+paper:
+  in_table2: true
+  loso_finetune_sessions: 1
+  fewshot_ratio: "10% of one session"
+  pretraining_leakage: []
+canonical_version: null
+# Official recipe (third_party/eeg_fm_benchmark/datasets/BNCI2014009/Preprocess_Dataset.py @680b12b)
+benchmark_preprocess:
+  moabb_paradigm: "P300(fmin=0.1, fmax=75)"
+  session_kept: "0train"
+  crop_samples: null                    # MOABB epoch 0.8 s @ 256 Hz; FMs pad to 1 s via --time_length (utils/preprocessing.py trim/pad)
+  label_map: {Target: 0, NonTarget: 1}  # note: target is class 0 in the benchmark
+  channel_names: [Fz, FCz, Cz, CPz, Pz, Oz, F3, F4, C3, C4, CP3, CP4, P3, P4, PO7, PO8]
+  official_hparams_json: null
+notes: "6x6 matrix speller, overt attention."

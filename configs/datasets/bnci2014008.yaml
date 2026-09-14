@@ -1,0 +1,34 @@
+# Dataset card. Facts: EEG-FM-Compass Table 14 / A3. Verify against MOABB after download.
+key: bnci2014008
+display_name: "BNCI2014008 (P300 speller, ALS patients)"
+paradigm: p300
+source:
+  provider: moabb
+  moabb_class: BNCI2014_008
+n_subjects: 8
+sessions: ["0"]                        # single session; verify MOABB name
+n_channels: 8
+montage: monopolar
+channel_names: [Fz, Cz, Pz, Oz, P3, P4, PO7, PO8]
+sfreq_native: 256
+trial_length_s: 1.0
+n_trials_total: 33600                  # flash epochs (7 runs x 5 characters = 35 spelled characters)
+classes: [non_target, target]
+label_space: p300
+class_balance: imbalanced
+dataset_filtering: "0.1-30 Hz bandpass (applied by dataset authors)"
+paper:
+  in_table2: true
+  loso_finetune_sessions: 1
+  fewshot_ratio: "5% of one session"
+  pretraining_leakage: []
+canonical_version: null
+# Official recipe (third_party/eeg_fm_benchmark/datasets/BNCI2014008/Preprocess_Dataset.py @680b12b)
+benchmark_preprocess:
+  moabb_paradigm: "P300(fmin=0.1, fmax=75)"
+  session_kept: "0train"                # the only session
+  crop_samples: null                    # MOABB epoch 1 s @ 256 Hz
+  label_map: {Target: 0, NonTarget: 1}
+  channel_names: [Fz, Cz, Pz, Oz, P3, P4, PO7, PO8]
+  official_hparams_json: null
+notes: "Clinical population (ALS)."

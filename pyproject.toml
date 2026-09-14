@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eegbench"
+version = "0.0.1"
+description = "EEG foundation-model vs specialist-model benchmark (EEG-FM-Compass LOSO protocol) and cross-dataset generalization"
+readme = "README.md"
+requires-python = ">=3.10"
+# Runtime pins live in environment.yml / per-model environments: torch must come from PyTorch's own
+# CUDA index and several FMs (e.g. EEGMamba) need CUDA-built extensions that cannot be expressed here.
+dependencies = []
+
+[project.scripts]
+eegbench = "eegbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "slow: needs a GPU, downloaded data/weights, or more than a few seconds",
+    "needs_weights: requires files listed in weights/MANIFEST.yaml",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["third_party"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]

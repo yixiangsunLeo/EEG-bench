@@ -1,0 +1,30 @@
+# Base environment for eegbench (data preparation, specialists, summarizer).
+#
+# Cluster note: the shared conda env `mi_torch_cu118` (Python 3.10, torch 2.7.1+cu118, mne 1.10) already
+# exists on the 4090D cluster and MUST NOT be modified. Use it for P1/P2 until a dedicated env is needed.
+#
+# Foundation models: several official repos pin incompatible torch / CUDA-extension versions
+# (e.g. EEGMamba -> mamba-ssm + causal-conv1d). Decide single-env vs per-model envs in PLAN.md Q6 and record
+# the outcome in docs/DECISIONS.md. Per-model env files, if any, go to envs/<model_key>.yml.
+#
+# Pins below are placeholders until P0 establishes the real dependency set.
+name: eegbench
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      # torch / torchvision / torchaudio: install from https://download.pytorch.org/whl/<cuXXX> first
+      - numpy
+      - scipy
+      - scikit-learn
+      - pandas
+      - pyyaml
+      - mne
+      - moabb            # BNCI2014001/004, 2015001, 2014009/008 downloads
+      - matplotlib
+      - seaborn
+      - tqdm
+      - pytest
+      - ruff
